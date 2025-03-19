@@ -1,7 +1,7 @@
-//-single line comment - heading
+// single line comment 
 /*
     multiline
-    comment     - code
+    comment     
 */
 
 
