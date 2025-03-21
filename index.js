@@ -1,3 +1,5 @@
+Basic of Javascript
+
 // single line comment 
 /*
     multiline
