@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Stopwatch</h3>
+    <p id="0">0</p>
+    <button id="btstart">start</button>
+    <button id="btstop">stop</button>
+    <button id="btreset">reset</button>
+
+    <h2 id="text">rajesh</h2>
+
+    <script>
+         var a=document.getElementById("0");
+         var b=document.getElementById("btstart");
+         var c=document.getElementById("btstop");
+         var d=document.getElementById("btreset");
+
+        var x;
+        //starting timing
+        b.addEventListener("click",()=>{
+            x= setInterval(()=>{
+                a.textContent=parseInt(a.textContent)+1;
+            },1000)
+        })
+
+        //stop timing
+        c.addEventListener("click",()=>{
+            clearInterval(x);
+        })
+
+        //reset timing 
+        d.addEventListener("click",()=>{
+            a.textContent=0;
+        })
+
+        //settimout
+        var e=document.getElementById("text");
+        setTimeout(()=>{
+            e.textContent="madesh";
+        },2000)
+    </script>
+</body>
+</html>
