@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="a">hello</h1>
+    <button id="b" onclick="change()">click here</button>
+
+    <h1 id="c">hello</h1>
+    <button id="d">click here</button>
+
+    <script>
+        //normal function
+         var a=document.getElementById("a");    //getter method
+         var b=document.getElementById("b");    //getter method
+        function change(){
+            a.textContent="world";
+        }
+        
+        //anonyms function (or) callback function
+        var c=document.getElementById("c");
+        var d=document.getElementById("d"); 
+        d.addEventListener("click",()=>{    
+            c.textContent="mairu";              //property
+        })
+    </script>
+</body>
+</html>
