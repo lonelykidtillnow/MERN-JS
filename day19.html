@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>navbar</title>
+
+    <!--tailwind css-->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <!--container-->
+    <div class="2xl:container mx-auto">
+        <!--safety container-->
+        <div class="w-[90%] mx-auto grid grid-cols-1 md:grid-cols-2 h-[10vh] space-y-5">
+            <div class="flex justify-between items-center px-[10px]">
+                <p>BLACKROCK</p>
+                <div class="flex md:hidden">
+                    <svg id="logo1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu-icon lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                    <svg id="logo2" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </div>
+            </div>
+            <div class="flex flex-col justify-center md:flex-row justify-end items-center gap-4 px-[10px]" id="content">
+                <p>Home</p>
+                <p>About us</p>
+                <p>Contact us</p>
+                <p>Blogs</p>
+                <p>Products</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const a=document.getElementById("logo1");
+        const b=document.getElementById("logo2");
+        const c=document.getElementById("content");
+
+
+        a.addEventListener("click",()=>{
+            c.classList.toggle("hidden");
+            b.classList.remove("hidden");
+            a.classList.add("hidden");
+        })
+
+        b.addEventListener("click",()=>{
+            b.classList.add("hidden");
+            c.classList.remove("hidden");
+            a.classList.remove("hidden");
+        })
+    </script>
+</body>
+</html>
