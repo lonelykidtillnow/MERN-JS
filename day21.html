@@ -1,0 +1,216 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    
+    //tailwind css
+    <script src="https://cdn.tailwindcss.com"></script>
+
+   //firebase sdk
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+</head>
+<body>
+    <div class="px-[40%] py-[10%]">
+        <form id="form">
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td><input class="border-black border-[1px]" id="ip1"></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input class="border-black border-[1px]" id="ip2"></td>
+                </tr>
+                <tr>
+                    <td>Phone no:</td>
+                    <td><input class="border-black border-[1px]" id="ip3"></td>
+                    <td class="text-red-500"><p id="p"></p></td>
+                </tr>
+                <tr>
+                    <td>Message:</td>
+                    <td><textarea class="border-black border-[1px]" id="textarea"></textarea></td>
+                </tr>
+                <tr>
+                    <td><button class="border-black border-[1px] p-[5px]">Submit</button></td>
+                </tr>
+            </table> 
+        </form>
+    </div>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAcT_L7yEnlClBhe2EF0eqWe2msFZr8PuQ",
+            authDomain: "mern-forms-483fb.firebaseapp.com",
+            databaseURL: "https://mern-forms-483fb-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "mern-forms-483fb",
+            storageBucket: "mern-forms-483fb.firebasestorage.app",
+            messagingSenderId: "919075530074",
+            appId: "1:919075530074:web:25d1cf9f80a289bb737f63"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database().ref("forms");
+
+        const a = document.getElementById("ip1");
+        const b = document.getElementById("ip2");
+        const c = document.getElementById("textarea");
+        const d = document.getElementById("form");
+        const f = document.getElementById("ip3");
+        const g = document.getElementById("p");
+
+        function form(name, email, message, phoneno) {
+            var regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+            var phoneregex = /^[0-9]{10}$/;
+
+            if (!regex.test(email)) {
+                alert("Please enter a valid email ID");
+                return false;
+            }
+            if (!phoneregex.test(phoneno)) {
+                g.textContent = "Please enter a valid phone number";
+                return false;
+            }
+            return true;
+        }
+
+        function savedatatodb(name, email, message, phoneno) {
+            db.push({ name, email, message, phoneno }).then(() => alert("Data saved successfully!"));
+        }
+
+        d.addEventListener("submit", (e) => {
+            e.preventDefault();
+            if (form(a.value, b.value, c.value, f.value)) {
+                savedatatodb(a.value, b.value, c.value, f.value);
+            }
+        });
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+
+    <!--tailwind css-->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!--firebase sdk-->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+</head>
+<body>
+    <div class="px-[40%] py-[10%]">
+        <form id="form">
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td><input class="border-black border-[1px]" id="ip1"></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input class="border-black border-[1px]" id="ip2"></td>
+                </tr>
+                <tr>
+                    <td>Phone no:</td>
+                    <td><input class="border-black border-[1px]" id="ip3"></td><br>
+                    <td class="text-red-500"><p id="p"></p></td>
+                </tr>
+                <tr>
+                    <td>Message:</td>
+                    <td><textarea class="border-black border-[1px]" id="textarea"></textarea></td>
+                </tr>
+                <tr>
+                    <td><button class="border-black border-[1px] p-[5px]">Submit</button></td>
+                </tr>
+            </table> 
+        </form>
+    </div>
+
+    <script>
+        const a=document.getElementById("ip1");
+        const b=document.getElementById("ip2");
+        const c=document.getElementById("textarea");
+        const d=document.getElementById("form");
+        const f=document.getElementById("ip3");
+        const g=document.getElementById("p");
+
+        function form(name,email,message,phoneno){
+            //seeing in console
+            console.log("checking:",name,email,message,phoneno);
+
+            let emailvalid,phonevalid;
+            //email condition
+            var regex = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+            //phone no condition
+            var phoneregex=/^[0-9]{10}$/;
+            //email checking
+            if(regex.test(email)){
+                emailvalid=true;
+            }
+            else{
+                alert("please enter valid email id");
+                emailvalid=false;
+            }
+            //phone number checking
+            if(phoneregex.test(phoneno)){
+                    phonevalid=true;
+            }
+            else{
+                g.textContent="please enter valid phone number"
+                phonevalid=false;
+            }
+            return emailvalid && phonevalid;
+        }
+
+            //firebase connectivity
+            const firebaseConfig = {
+                apiKey: "AIzaSyAcT_L7yEnlClBhe2EF0eqWe2msFZr8PuQ",
+                authDomain: "mern-forms-483fb.firebaseapp.com",
+                databaseURL: "https://mern-forms-483fb-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "mern-forms-483fb",
+                storageBucket: "mern-forms-483fb.firebasestorage.app",
+                messagingSenderId: "919075530074",
+                appId: "1:919075530074:web:25d1cf9f80a289bb737f63"
+            };
+            firebase.initializeApp(firebaseConfig);
+
+        function savedatatodb(name,email,message,phoneno){
+
+            console.log("Attempting to save to Firebase...");
+            console.log("Firebase Object:", firebase);
+            console.log("Database Reference:", firebase.database().ref("login-forms"))
+
+            const db=firebase.database().ref("login-forms");
+            db.push({
+                name:name,
+                email:email,
+                message:message,
+                phoneno:phoneno,
+            })
+            .then(()=> alert("data saved successfully"))
+            .catch((error)=> console.log("firebase",error));
+        }
+
+        d.addEventListener("submit",(e)=>{
+            //changing default form behaviour
+            e.preventDefault();
+
+            const res= form(a.value,b.value,c.value,f.value);
+            console.log(res);
+
+            if(res){
+                savedatatodb(a.value,b.value,c.value,f.value);
+            }
+            
+        })
+    </script>
+</body>
+</html>
