@@ -1,3 +1,95 @@
+<!--form validation without firebases connection-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form validation</title>
+</head>
+<body>
+    <form id="form">
+        Name:   <input id="ip1"><br>
+        <p id="name" style="color: red;"></p><br>
+
+        Email:  <input id="ip2"><br>
+        <p id="email"  style="color: red;"></p><br>
+
+        Phone No:   <input id="ip3"><br>
+        <p id="phone" style="color: red;"></p><br>
+
+        Password:   <input id="ip4"><br>
+        <p id="password" style="color: red;"></p><br>
+
+        <button>submit</button>
+    </form>
+
+    <script>
+        const form =document.getElementById("form");
+        const a=document.getElementById("ip1");
+        const b=document.getElementById("ip2");
+        const c=document.getElementById("ip3");
+        const d=document.getElementById("ip4");
+
+        var w=document.getElementById("name");
+        var x=document.getElementById("email");
+        var y=document.getElementById("phone");
+        var z=document.getElementById("password");
+
+        function checkingform(name,email,phoneno,password){
+            //clear previous message
+            w.textContent="";
+            x.textContent="";
+            y.textContent="";
+            z.textContent="";
+
+            //name condition
+            var nameregex=/^[A-Za-z ]{1,}$/
+            //email condition
+            var emailregex=/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/ 
+            //phoneno condition
+            var phoneregex=/^[0-9]{10}$/
+            //password condition
+            var passregex=/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
+
+            //checking condition
+            if(!nameregex.test(name)){
+                w.textContent="name should be only in letter"
+                return false;
+            }
+            if(!emailregex.test(email)){
+                x.textContent="please enter valid email";
+                return false;
+            }
+            if(!phoneregex.test(phoneno)){
+                y.textContent="phone should be in 10 digits";
+                return false;
+            }
+            if(!passregex.test(password)){
+                z.textContent="please enter valid password  eg:Xyz@123";
+                return false;
+            }
+            return true;
+        }
+
+        form.addEventListener("submit",(e)=>{
+            //1.changing form behaviour
+            e.preventDefault();
+            
+            const res=checkingform(a.value,b.value,c.value,d.value);
+            if(res){
+                console.log(a.value,b.value,c.value,d.value)
+                alert("Data saved Successfully");
+            }
+            else{
+                console.log("fill form correctly");
+            }
+        })
+    </script>
+</body>
+</html>
+
+
+<!--form validation with firebase connection-->
 <!-- <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,127 +182,3 @@
     </script>
 </body>
 </html> -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Validation</title>
-
-    <!--tailwind css-->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!--firebase sdk-->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-
-</head>
-<body>
-    <div class="px-[40%] py-[10%]">
-        <form id="form">
-            <table>
-                <tr>
-                    <td>Name:</td>
-                    <td><input class="border-black border-[1px]" id="ip1"></td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td><input class="border-black border-[1px]" id="ip2"></td>
-                </tr>
-                <tr>
-                    <td>Phone no:</td>
-                    <td><input class="border-black border-[1px]" id="ip3"></td><br>
-                    <td class="text-red-500"><p id="p"></p></td>
-                </tr>
-                <tr>
-                    <td>Message:</td>
-                    <td><textarea class="border-black border-[1px]" id="textarea"></textarea></td>
-                </tr>
-                <tr>
-                    <td><button class="border-black border-[1px] p-[5px]">Submit</button></td>
-                </tr>
-            </table> 
-        </form>
-    </div>
-
-    <script>
-        const a=document.getElementById("ip1");
-        const b=document.getElementById("ip2");
-        const c=document.getElementById("textarea");
-        const d=document.getElementById("form");
-        const f=document.getElementById("ip3");
-        const g=document.getElementById("p");
-
-        function form(name,email,message,phoneno){
-            //seeing in console
-            console.log("checking:",name,email,message,phoneno);
-
-            let emailvalid,phonevalid;
-            //email condition
-            var regex = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-            //phone no condition
-            var phoneregex=/^[0-9]{10}$/;
-            //email checking
-            if(regex.test(email)){
-                emailvalid=true;
-            }
-            else{
-                alert("please enter valid email id");
-                emailvalid=false;
-            }
-            //phone number checking
-            if(phoneregex.test(phoneno)){
-                    phonevalid=true;
-            }
-            else{
-                g.textContent="please enter valid phone number"
-                phonevalid=false;
-            }
-            return emailvalid && phonevalid;
-        }
-
-            //firebase connectivity
-            const firebaseConfig = {
-                apiKey: "AIzaSyAcT_L7yEnlClBhe2EF0eqWe2msFZr8PuQ",
-                authDomain: "mern-forms-483fb.firebaseapp.com",
-                databaseURL: "https://mern-forms-483fb-default-rtdb.asia-southeast1.firebasedatabase.app",
-                projectId: "mern-forms-483fb",
-                storageBucket: "mern-forms-483fb.firebasestorage.app",
-                messagingSenderId: "919075530074",
-                appId: "1:919075530074:web:25d1cf9f80a289bb737f63"
-            };
-            firebase.initializeApp(firebaseConfig);
-
-        function savedatatodb(name,email,message,phoneno){
-
-            console.log("Attempting to save to Firebase...");
-            console.log("Firebase Object:", firebase);
-            console.log("Database Reference:", firebase.database().ref("login-forms"))
-
-            const db=firebase.database().ref("login-forms");
-            db.push({
-                name:name,
-                email:email,
-                message:message,
-                phoneno:phoneno,
-            })
-            .then(()=> alert("data saved successfully"))
-            .catch((error)=> console.log("firebase",error));
-        }
-
-        d.addEventListener("submit",(e)=>{
-            //changing default form behaviour
-            e.preventDefault();
-
-            const res= form(a.value,b.value,c.value,f.value);
-            console.log(res);
-
-            if(res){
-                savedatatodb(a.value,b.value,c.value,f.value);
-            }
-            
-        })
-    </script>
-</body>
-</html>
