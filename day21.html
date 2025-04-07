@@ -90,6 +90,95 @@
 
 
 <!--form validation with firebase connection-->
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    //firebase sdk
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+</head>
+<body>
+    <form id="form">
+        Name: <input id="ip1">
+        <p id="p1" style="color: red;"></p><br>
+        Email: <input id="ip2">
+        <p id="p2" style="color: red;"></p><br>
+        Phoneno: <input id="ip3">
+        <p id="p3" style="color: red;"></p><br>
+        <button>Submit</button>
+    </form>
+
+    <script>
+        const form=document.getElementById("form");
+
+        const a=document.getElementById("ip1");
+        const b=document.getElementById("ip2");
+        const c=document.getElementById("ip3");
+
+        const x=document.getElementById("p1");
+        const y=document.getElementById("p2");
+        const z=document.getElementById("p3");
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDjKXgxW584d3D79jH1vpuWm2vjr_g8Jl4",
+            authDomain: "sample-form-55929.firebaseapp.com",
+            databaseURL: "https://sample-form-55929-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "sample-form-55929",
+            storageBucket: "sample-form-55929.firebasestorage.app",
+            messagingSenderId: "411766197689",
+            appId: "1:411766197689:web:9df989e3c88bb2c360fa68"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        function checkingform(name,email,phoneno){
+            x.textContent=" "
+            y.textContent=" "
+            z.textContent=" "
+
+            const nameregex=/^[a-zA-Z ]{1,}$/
+            const emailregex=/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
+            const phoneregex=/^[0-9]{10}$/
+            if(!nameregex.test(name)){
+                x.textContent="name only contain letter"
+                return false;
+            }
+            if(!emailregex.test(email)){
+                y.textContent="please enter valid Email"
+                return false;
+            }
+            if(!phoneregex.test(phoneno)){
+                z.textContent="please enter valid phone number"
+                return false;
+            }
+            return true;
+        }
+
+        function databaseconnect(name,email,phoneno){
+            const db=firebase.database().ref("user");
+            db.push({
+                name:name,
+                email:email,
+                phoneno:phoneno,
+            }).then(()=> alert("data saved successfully"));
+        }
+
+        form.addEventListener("submit",(e)=>{
+            e.preventDefault();
+            if(checkingform(a.value,b.value,c.value)){
+                databaseconnect(a.value,b.value,c.value);
+            }
+        })
+    </script>
+</body>
+</html> -->
+
+
 <!-- <!DOCTYPE html>
 <html lang="en">
 <head>
